@@ -1,0 +1,35 @@
+<h1>My tasks</h1>
+
+<ul>
+  <% @tasks.each do |task| %>
+    <%#= task.completed %>
+    <li>
+      <% if task.completed %>
+        <i class="far fa-check-square"></i>
+      <% else %>
+        <i class="far fa-square"></i>
+      <% end %>
+      <%#= check_box("tag", tag.id, {checked: task.completed}) %>
+      <%= link_to task.title, task_path(task) %>
+      <%= link_to ('<i class="far fa-trash-alt"></i>').html_safe, task_path(task), method: :delete, data: { confirm: "Are you sure?" }  %>
+    </li>
+  <% end %>
+</ul>
+
+<hr>
+
+<%= link_to tasks_new_path do %>
+  <i class="fas fa-plus"></i>
+  <span>Add new task</span>
+<% end %>
+
+<%# CHECKABLE BOX (TESTING): %>
+<%#= form_for @tasks, do |task| %>
+    <%#= task.check_box :completed, class: "check_box", onchange: "this.form.submit();" %>
+    <%#= task.title %>
+<%# end %>
+
+<%# OTHER DELETE OPTION:  %>
+<%#= link_to task_path(task.id), method: :delete, data: { confirm: "Delete #{task.title}?" } do %>
+  <%# <i class="fa fa-trash-o" aria-hidden="true"></i> %>
+<%# end %>
